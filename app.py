@@ -7,7 +7,6 @@ import os
 app = Flask(__name__)
 CORS(app)  # This enables CORS for all routes
 
-
 model = joblib.load('Model.joblib')
 
 @app.route('/predict', methods=['POST'])
@@ -15,26 +14,26 @@ def predict():
     # استلام البيانات المدخلة (الـ JSON)
     data = request.json
     
-    # استخراج البيانات من الـ JSON
+    # استخراج البيانات من الـ JSON بالترتيب الذي ذكرته
     input_data = [
-        data['HighBP'],
-        data['HighChol'],
-        data['CholCheck'],
-        data['BMI'],
-        data['Smoker'],
-        data['Stroke'],
-        data['HeartDiseaseorAttack'],
-        data['Veggies'],
-        data['HvyAlcoholConsump'],
-        data['AnyHealthcare'],
-        data['NoDocbcCost'],
-        data['GenHlth'],
-        data['MentHlth'],
-        data['PhysHlth'],
-        data['Sex'],
-        data['Age'],
-        data['Education'],
-        data['Income']
+        data['HighBP'],               # HighBP
+        data['HighChol'],             # HighChol
+        data['CholCheck'],            # CholCheck
+        data['BMI'],                  # BMI
+        data['Smoker'],               # Smoker
+        data['Stroke'],               # Stroke
+        data['HeartDiseaseorAttack'], # HeartDiseaseorAttack
+        data['Veggies'],              # Veggies
+        data['HvyAlcoholConsump'],    # HvyAlcoholConsump
+        data['AnyHealthcare'],        # AnyHealthcare
+        data['NoDocbcCost'],          # NoDocbcCost
+        data['GenHlth'],              # GenHlth
+        data['MentHlth'],             # MentHlth
+        data['PhysHlth'],             # PhysHlth
+        data['Sex'],                  # Sex
+        data['Age'],                  # Age
+        data['Education'],            # Education
+        data['Income']                # Income
     ]
     
     # تحويل البيانات إلى مصفوفة NumPy
@@ -42,7 +41,7 @@ def predict():
     
     # تنفيذ التنبؤ باستخدام النموذج
     prediction = model.predict(input_features)
-    print("Prediction",prediction)
+    
     # إرجاع النتيجة في شكل JSON
     return jsonify({'prediction': prediction.tolist()})
 

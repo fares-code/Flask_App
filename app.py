@@ -42,7 +42,7 @@ def predict():
     
     # تنفيذ التنبؤ باستخدام النموذج
     prediction = model.predict(input_features)
-    
+    print("Prediction",prediction)
     # إرجاع النتيجة في شكل JSON
     return jsonify({'prediction': prediction.tolist()})
 

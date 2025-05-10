@@ -11,10 +11,10 @@ model = joblib.load('Model.joblib')
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # استلام البيانات المدخلة (الـ JSON)
+   
     data = request.json
     
-    # استخراج البيانات من الـ JSON بالترتيب الذي ذكرته
+   
     input_data = [
         data['HighBP'],               # HighBP
         data['HighChol'],             # HighChol
@@ -36,13 +36,13 @@ def predict():
         data['Income']                # Income
     ]
     
-    # تحويل البيانات إلى مصفوفة NumPy
-    input_features = np.array(input_data).reshape(1, -1)  # تحويل المدخلات إلى مصفوفة صف واحد
+   
+    input_features = np.array(input_data).reshape(1, -1)  
     
-    # تنفيذ التنبؤ باستخدام النموذج
+    
     prediction = model.predict(input_features)
     
-    # إرجاع النتيجة في شكل JSON
+   
     return jsonify({'prediction': prediction.tolist()})
 
 if __name__ == '__main__':
